@@ -6,7 +6,7 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Reformed Bookstore!");
+            new StartMenu().Start();
         }
     }
 }
