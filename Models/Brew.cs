@@ -5,26 +5,13 @@ namespace Models
     public class Brew
     {
         //properties
-        public Brewery brewery { get; set; }
-        public string Desc { get; set; }
-        public double Price { get; set; }
+        public string Name { get; set; }
 
         //constructors
-        public Brew(){}
-
-        public Brew(Brewery brewery)
+        public Brew(string name)
         {
-            this.brewery = brewery;
+            this.Name = name;
         }
 
-        public Brew(string Desk)
-        {
-            this.Desc = Desc;
-        }
-
-        public Brew(double Price)
-        {
-            this.Price = Price;
-        }
     }
 }

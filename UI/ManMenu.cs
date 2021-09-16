@@ -18,7 +18,7 @@ namespace UI
                 switch(Console.ReadLine())
                 {
                     case "1":
-                        Console.WriteLine("You would like to Manage Brews.");
+                        new ManBrewMenu().Start();
                         break;
                     case "2":
                         Console.WriteLine("You would like to Manage Breweries.");
