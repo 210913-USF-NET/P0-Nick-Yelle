@@ -1,12 +1,12 @@
-﻿using System;
-
 namespace UI
 {
-    class Program
+    public class MainMenu : IMenu
     {
-        static void Main(string[] args)
+        public void Start()
         {
             Console.WriteLine("Welcome to Reformed Bookstore!");
+            Console.WriteLine("");
+
         }
     }
 }
