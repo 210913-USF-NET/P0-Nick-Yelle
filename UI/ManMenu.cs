@@ -1,4 +1,6 @@
 using System;
+using BL;
+using DL;
 
 namespace UI
 {
@@ -18,7 +20,7 @@ namespace UI
                 switch(Console.ReadLine())
                 {
                     case "1":
-                        new ManBrewMenu().Start();
+                        new ManBrewMenu(new BrewLogic(new RAMRepo())).Start();
                         break;
                     case "2":
                         Console.WriteLine("You would like to Manage Breweries.");

@@ -1,11 +1,18 @@
 using System;
 using Models;
+using BL;
+using System.Collections.Generic;
 
 namespace UI
 {
     public class ManBrewMenu : IMenu
     {
+        private IBL _bl;
 
+        public ManBrewMenu(IBL bl)
+        {
+            _bl = bl;
+        }
         public void Start()
         {
             bool exit = false;
@@ -14,6 +21,7 @@ namespace UI
                 Console.WriteLine();
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine("[1] Create Brew");
+                Console.WriteLine("[2] List Current Brews");
                 Console.WriteLine("[x] Back to Manager Menu");
 
                 switch(Console.ReadLine())
@@ -22,7 +30,7 @@ namespace UI
                         CreateBrew();
                         break;
                     case "2":
-                        Console.WriteLine("You would like to Manage Breweries.");
+                        ListBrews();
                         break;
                     case "x":
                         exit = true;
@@ -42,6 +50,23 @@ namespace UI
             string name = Console.ReadLine();
             Brew newBrew = new Brew(name);
             Console.WriteLine($"You created {name}");
+            _bl.AddBrew(newBrew);
+        }
+
+        private void ListBrews()
+        {
+            List<Brew> allBrews = _bl.GetAllBrews();
+            if(allBrews.Count == 0)
+            {
+                Console.WriteLine("There are no Brews.");
+            }
+            else
+            {
+                foreach(Brew brew in allBrews)
+                {
+                    Console.WriteLine(brew.ToString());
+                }
+            }
         }
     }
 }
