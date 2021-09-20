@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Models;
 using System.IO;
 using System.Text.Json;
+using Serilog;
 
 namespace DL
 {
@@ -13,6 +14,7 @@ namespace DL
 
         public void AddBrew(Brew brew)
         {
+            Log.Debug("DL adding brew, {0}", brew.ToString());
             List<Brew> allBrews = GetAllBrews();
 
             allBrews.Add(brew);
