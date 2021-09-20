@@ -7,9 +7,9 @@ namespace UI
 {
     public class ManBrewMenu : IMenu
     {
-        private IBL _bl;
+        private IBrews _bl;
 
-        public ManBrewMenu(IBL bl)
+        public ManBrewMenu(IBrews bl)
         {
             _bl = bl;
         }
@@ -53,7 +53,7 @@ namespace UI
             _bl.AddBrew(newBrew);
         }
 
-        private void ListBrews()
+        public void ListBrews()
         {
             List<Brew> allBrews = _bl.GetAllBrews();
             if(allBrews.Count == 0)

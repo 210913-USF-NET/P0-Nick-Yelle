@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BL
 {
-    public interface IBrewLogic
+    public interface IBrews
     {
         void AddBrew(Brew brew);
         List<Brew> GetAllBrews();

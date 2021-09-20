@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BL
 {
-    public class BrewLogic : IBrewLogic, IBreweryLogic
+    public class BrewLogic : IBrews
     {
         private IRepo _IRepo;
 
@@ -17,19 +17,10 @@ namespace BL
             _IRepo.AddBrew(brew);
         }
 
-        // public void AddBrewery(Brewery brewery)
-        // {
-        //     _IRepo.AddBrewery();
-        // }
-
-        // public List<Brewery> GetAllBreweries()
-        // {
-        //     throw new System.NotImplementedException();
-        }
-
         public List<Brew> GetAllBrews()
         {
             return _IRepo.GetAllBrews();
         }
     }
 }
+
