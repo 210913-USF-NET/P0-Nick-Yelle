@@ -10,7 +10,7 @@ namespace UI
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("../Logs/logs.txt", rollingInterval: RollingInterval.Day)
+            .WriteTo.File("../logs/logs.txt", rollingInterval: RollingInterval.Day)
             .CreateLogger();
 
             Log.Information("Application Starting...");

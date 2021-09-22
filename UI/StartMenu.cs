@@ -24,7 +24,7 @@ namespace UI
                         new ShopMenu().Start();
                         break;
                     case "M":
-                        new ManMenu().Start();
+                        new ManCredMenu().Start();
                         break;
                     case "X":
                         exit = true;
