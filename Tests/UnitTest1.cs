@@ -1,4 +1,5 @@
 using System;
+using Models;
 using Xunit;
 
 namespace Tests
@@ -13,14 +14,13 @@ namespace Tests
             string testName = "test brew";
 
             //Act.
-            test.name = testName;
+            test.Name = testName;
 
             //Assert.
             Assert.Equal(testName, test.Name);
         }
 
         [Theory]
-        []
         public void BrewShouldNotSetInvalidData(string input)
         {
             //Arrange.

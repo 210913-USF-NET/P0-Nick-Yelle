@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BL</name>
+    </assembly>
+    <members>
+        <member name="T:BL.ISBL">
+            <summary>
+            Interface designed to interact with customers
+            </summary>
+        </member>
+        <member name="M:BL.ISBL.GetBreweries">
+            Gets all breweries listed in database "Breweries".
+        </member>
+    </members>
+</doc>

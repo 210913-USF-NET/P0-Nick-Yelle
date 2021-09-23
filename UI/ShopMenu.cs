@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using BL;
+using Models;
 
 namespace UI
 {
@@ -12,16 +14,19 @@ namespace UI
             do
             {
                 Console.WriteLine();
-                Console.WriteLine("");
-                Console.WriteLine("[1] Shop Brews");
+                Console.WriteLine("How would you like to shop?");
+                Console.WriteLine("[1] Shop By Brewery.");
+                Console.WriteLine("[2] Shop By Brews");
                 Console.WriteLine("[x] Back to Start Menu");
 
                 switch(Console.ReadLine())
                 {
                     case "1":
-                        Console.WriteLine("Here are all the brews.");
+                        MenuFactory.GetMenu("shopping by brewery").Start();
                         break;
-
+                    case "2":
+                        MenuFactory.GetMenu("shopping by brews").Start();
+                        break;
                     case "x":
                         exit = true;
                         Console.WriteLine("Bye.");
@@ -33,5 +38,6 @@ namespace UI
                 }
             } while (!exit);
         }
+        
     }
 }

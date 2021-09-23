@@ -15,7 +15,7 @@ namespace UI
 
             Log.Information("Application Starting...");
 
-            new StartMenu().Start();
+            MenuFactory.GetMenu("start menu").Start();
 
             Log.Information("...Application Closing.");
             Log.CloseAndFlush();

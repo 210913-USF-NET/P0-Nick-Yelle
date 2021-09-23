@@ -12,7 +12,7 @@ namespace DL.Entities
             Brews = new HashSet<Brew>();
         }
 
-        public int Id { get; set; }
+        public int BreweryId { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
         public string State { get; set; }

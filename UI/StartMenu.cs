@@ -21,7 +21,7 @@ namespace UI
                 switch(Console.ReadLine().ToUpper())
                 {
                     case "S":
-                        new ShopMenu().Start();
+                        MenuFactory.GetMenu("shop menu").Start();
                         break;
                     case "M":
                         new ManCredMenu().Start();

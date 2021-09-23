@@ -10,6 +10,8 @@ namespace Models
         public int Id {get; set;}
         public int Price {get; set;}
 
+        public int BrewQuantity {get; set;}
+
         //constructors
         public Brew(){}
         public Brew(string name)

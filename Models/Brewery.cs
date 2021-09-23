@@ -20,5 +20,10 @@ namespace Models
             this.City = City;
             this.State = State;
         }
+
+        public override string ToString()
+        {
+            return $"{Name} in {City}, {State}";
+        }
     }
 }
