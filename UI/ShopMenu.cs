@@ -14,9 +14,11 @@ namespace UI
             do
             {
                 Console.WriteLine();
-                Console.WriteLine("How would you like to shop?");
-                Console.WriteLine("[1] Shop By Brewery.");
+                Console.WriteLine("Welcome to the Shopping Menu.");
+                Console.WriteLine("What would you like to do?");
+                Console.WriteLine("[1] Shop By Brewery");
                 Console.WriteLine("[2] Shop By Brews");
+                Console.WriteLine("[3] View Current Order");
                 Console.WriteLine("[x] Back to Start Menu");
 
                 switch(Console.ReadLine())
@@ -26,6 +28,9 @@ namespace UI
                         break;
                     case "2":
                         MenuFactory.GetMenu("shopping by brews").Start();
+                        break;
+                    case "3":
+                        MenuFactory.GetMenu("order menu").Start();
                         break;
                     case "x":
                         exit = true;

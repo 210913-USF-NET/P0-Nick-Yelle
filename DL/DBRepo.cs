@@ -9,6 +9,7 @@ namespace DL
 {
     public class DBRepo : ISRepo
     {
+
         //Fields.
         private Entity.P0DBContext _context;
 
@@ -41,6 +42,35 @@ namespace DL
                     BrewQuantity = Brew.BrewQuantity
                 }
             ).ToList();
+        }
+
+        public void AddCustomer(Models.Customer cust)
+        {   
+            Entity.Customer ec = new Entity.Customer(){
+                Name = cust.Name
+            };
+            
+            ec = _context.Add(ec).Entity;
+
+            _context.SaveChanges();
+
+            _context.ChangeTracker.Clear();
+        }
+
+        public Customer CheckCustomerExists(string name)
+        {
+            List<Customer> custList = _context.Customers.Select(
+                Customer => new Models.Customer() {
+                    Id = Customer.CustomerId,
+                    Name = Customer.Name,
+                }
+            ).ToList();
+
+            foreach(Customer c in custList)
+            {
+                if (c.Name == name) { return c; }
+            }
+            return null;
         }
     }
 }

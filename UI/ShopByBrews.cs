@@ -20,17 +20,28 @@ namespace UI
             bool exit = false;
 
             Console.WriteLine();
-            GetBrews();
-
-
-            Console.WriteLine();
-            Console.WriteLine("Which Brew would you like to add to your order?");
+            Console.WriteLine(":::: All Brews ::::");
+            List<Brew> brewList = GetBrews();
             Console.WriteLine("[x] Back");
 
-            string brewIndex = Console.ReadLine();
+            Console.WriteLine("Select a Brew to add to your order.");
 
-            
+            int brewIndex = Int32.Parse(Console.ReadLine());
+
+            Brew chosenBrew = brewList[brewIndex];
+
+            Console.WriteLine();
+            Console.WriteLine($"You have chosen {chosenBrew.ToName()}");
+            Console.WriteLine();
+            Console.WriteLine("How many would you like?");
+            int chosenQuantity = Int32.Parse(Console.ReadLine());
+
+            //Create Orders. What if it 
+            // CreateOrder()
+
         }
+
+        // private void CreateOrder();
         private List<Brew> GetBrews()
         {
             List<Brew> allBrews = _bl.GetBrews();
@@ -42,7 +53,7 @@ namespace UI
             {
                 for(int i = 0; i < allBrews.Count; i++)
                 {
-                    Console.WriteLine($"[{i + 1}] {allBrews[i].ToString()}");
+                    Console.WriteLine($"[{i}] {allBrews[i].ToString()}");
                 }
             }
             return allBrews;

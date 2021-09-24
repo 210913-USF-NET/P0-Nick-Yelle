@@ -12,9 +12,19 @@ namespace Models
         public string Name {get; set;}
 
         //Constructors.
-        public Customer(string Name)
+        public Customer(){}
+        public Customer(string Name) : this()
         {
             this.Name = Name;
+        }
+        public Customer(int Id) : this()
+        {
+            this.Id = Id;
+        }
+
+        public override string ToString()
+        {
+            return $"{Name}";
         }
     }
 }

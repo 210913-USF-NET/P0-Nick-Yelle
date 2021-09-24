@@ -15,13 +15,14 @@ namespace UI
                 Console.WriteLine("Are you here to shop or manage?");
                 Console.WriteLine("[S] Shop");
                 Console.WriteLine("[M] Manage");
-                Console.WriteLine("[X] Exit");
+                Console.WriteLine("[x] Exit");
 
 
                 switch(Console.ReadLine().ToUpper())
                 {
                     case "S":
-                        MenuFactory.GetMenu("shop menu").Start();
+                        MenuFactory.GetMenu("login").Start();
+                        //MenuFactory.GetMenu("shop menu").Start();
                         break;
                     case "M":
                         new ManCredMenu().Start();

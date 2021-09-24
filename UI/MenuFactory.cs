@@ -25,13 +25,18 @@ namespace UI
             {
                 case "start menu":
                     return new StartMenu();
+                case "login":
+                    return new Login(new ShopLogic(new DBRepo(context)));
                 case "shop menu":
                     return new ShopMenu();
                 case "shopping by brewery":
                     return new ShopByBrewery(new ShopLogic(new DBRepo(context)));
                 case "shopping by brews":
                     return new ShopByBrews(new ShopLogic(new DBRepo(context)));
+                case "order menu":
+                    return new OrderMenu();
                 default:
+                    Console.WriteLine("Menu Factory Unrecognized command");
                     return null;
             }
         }

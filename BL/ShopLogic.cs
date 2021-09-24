@@ -27,5 +27,15 @@ namespace BL
         {
             return _repo.GetBrews();
         }
+
+        public void AddCustomer(Customer cust)
+        {
+            _repo.AddCustomer(cust);
+        }
+
+        public Customer CheckCustomerExists(string name)
+        {
+            return _repo.CheckCustomerExists(name);
+        }
     }
 }

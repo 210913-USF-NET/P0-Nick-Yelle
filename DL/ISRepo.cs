@@ -11,5 +11,9 @@ namespace DL
         List<Brewery> GetBreweries();
 
         List<Brew> GetBrews();
+
+        void AddCustomer(Customer cust);
+
+        Customer CheckCustomerExists(string name);
     }
 }
