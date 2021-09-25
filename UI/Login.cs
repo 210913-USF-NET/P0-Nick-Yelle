@@ -37,16 +37,38 @@ namespace UI
                 switch(Console.ReadLine().ToUpper())
                 {
                     case "0":
+                    
+                        //Collect name and add to Customers DB.
                         Console.WriteLine("Welcome! What is your Name?");
                         string name = Console.ReadLine();
                         Customer c = new Customer(name);
                         _bl.AddCustomer(c);
+
+                        //Set static CurrentCustomer to the customer that just logged in.
+                        CurrentCustomer = c;
+
+                        Console.WriteLine();
+                        Console.WriteLine($"Great, you are now logged in as {CurrentCustomer.ToString()}.");
+                        Console.WriteLine("Happy Brew Finding!");
+                        MenuFactory.GetMenu("shop menu").Start();
                         break;
                     case "1":
                         Console.WriteLine("Welcome Back! What is your Name?");
                         string n = Console.ReadLine();
-
+                        
+                        //Relating the Current customer to an order. **Creates a new order
+                        //each time app is run. Can I figure out how to save an order?
                         CurrentCustomer = _bl.CheckCustomerExists(n);
+
+                        try {
+                            CurrentOrder = new Order(CurrentCustomer.Id);
+                            CurrentOrder = _bl.CreateOrder(CurrentOrder);
+                        } 
+                        catch (NullReferenceException e)
+                        {
+                            Console.WriteLine($"A {n} has never been here...but...");
+                            goto case "0";
+                        }
 
                         if(CurrentCustomer == null)
                         {   

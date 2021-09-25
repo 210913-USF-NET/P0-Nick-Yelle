@@ -34,7 +34,7 @@ namespace UI
                 case "shopping by brews":
                     return new ShopByBrews(new ShopLogic(new DBRepo(context)));
                 case "order menu":
-                    return new OrderMenu();
+                    return new OrderMenu(new ShopLogic(new DBRepo(context)));
                 default:
                     Console.WriteLine("Menu Factory Unrecognized command");
                     return null;

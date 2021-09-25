@@ -28,20 +28,25 @@ namespace UI
 
             int brewIndex = Int32.Parse(Console.ReadLine());
 
+            //When 20 is used as input, it throws an exception...Idk why...
+            try
+            {
             Brew chosenBrew = brewList[brewIndex];
 
             Console.WriteLine();
-            Console.WriteLine($"You have chosen {chosenBrew.ToName()}");
+            Console.WriteLine($"You have chosen {chosenBrew.Name}");
             Console.WriteLine();
             Console.WriteLine("How many would you like?");
             int chosenQuantity = Int32.Parse(Console.ReadLine());
 
-            //Create Orders. What if it 
-            // CreateOrder()
-
+            AddBrewToOrder(Login.CurrentOrder, chosenBrew, chosenQuantity);
+            }
+            catch (System.ArgumentOutOfRangeException){}
         }
-
-        // private void CreateOrder();
+        private OrderItem AddBrewToOrder(Order order, Brew brew, int quantity)
+        {
+            return _bl.AddBrewToOrder(order, brew, quantity);
+        }
         private List<Brew> GetBrews()
         {
             List<Brew> allBrews = _bl.GetBrews();
@@ -53,7 +58,7 @@ namespace UI
             {
                 for(int i = 0; i < allBrews.Count; i++)
                 {
-                    Console.WriteLine($"[{i}] {allBrews[i].ToString()}");
+                    Console.WriteLine($"[{i}] {allBrews[i].ToDescription()}");
                 }
             }
             return allBrews;
