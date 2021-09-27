@@ -32,6 +32,7 @@ namespace UI
                 {
                     Console.WriteLine($"{oi.OrderQuantity} {GetBrewById(oi.BrewId)}");
                 }
+                Console.WriteLine();
                 Console.WriteLine("[$] To Place Current Order");
                 Console.WriteLine("[x] Exit Order Menu");
             }
@@ -48,6 +49,7 @@ namespace UI
         }
         private List<Brew> PlaceOrder(List<OrderItem> oiList)
         {
+            //new strategy: run through each brew here. Update 1 brew at a time in db. ***
             return _bl.PlaceOrder(oiList);
         }
         private List<OrderItem> GetOrderItems(int orderId)

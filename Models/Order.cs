@@ -13,9 +13,9 @@ namespace Models
         public bool OrderPlaced{get; set;}
 
         //Constructors.
-        public Order(int OrderId, int CustomerId)
+        public Order(){}
+        public Order(int CustomerId)
         {
-            this.OrderId = OrderId;
             this.CustomerId = CustomerId;
         }
 

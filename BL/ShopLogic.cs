@@ -37,5 +37,30 @@ namespace BL
         {
             return _repo.CheckCustomerExists(name);
         }
+
+        public Order CreateOrder(Order order)
+        {
+            return _repo.CreateOrder(order);
+        }
+
+        public OrderItem AddBrewToOrder(Order order, Brew brew, int quantity)
+        {
+            return _repo.AddBrewToOrder(order, brew, quantity);
+        }
+
+        public List<OrderItem> GetOrderItems(int orderId)
+        {
+            return _repo.GetOrderItems(orderId);
+        }
+
+        public Brew GetBrewById(int Id)
+        {
+            return _repo.GetBrewById(Id);
+        }
+
+        public List<Brew> PlaceOrder(List<OrderItem> oiList)
+        {
+            return _repo.PlaceOrder(oiList);
+        }
     }
 }

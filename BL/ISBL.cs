@@ -19,5 +19,15 @@ namespace BL
         void AddCustomer(Customer cust);
 
         Customer CheckCustomerExists(string name);
+
+        Order CreateOrder(Order order);
+
+        OrderItem AddBrewToOrder(Order order, Brew brew, int quantity);
+
+        List<OrderItem> GetOrderItems(int orderId);
+
+        Brew GetBrewById(int brewId);
+
+        List<Brew> PlaceOrder(List<OrderItem> oiList);
     }
 }

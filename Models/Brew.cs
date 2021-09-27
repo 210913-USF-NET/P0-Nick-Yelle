@@ -14,6 +14,8 @@ namespace Models
 
         public string Brewery {get; set;}
 
+        public int BreweryId {get; set;}
+
         //constructors
         public Brew(){}
         public Brew(string name)
@@ -29,13 +31,12 @@ namespace Models
         //Overriding ToString method.
         public override string ToString()
         {
-            return $"{Name} ${Price} ({BrewQuantity})";
+            return $"{Name} ${Price}";
         }
 
-        public string ToName()
+        public string ToDescription()
         {
-            return $"{Name}";
+            return $"${Price} {Name} ({BrewQuantity})";
         }
-
     }
 }

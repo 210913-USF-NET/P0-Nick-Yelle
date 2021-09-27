@@ -13,7 +13,7 @@ namespace DL.Entities
         }
 
         public int OrderId { get; set; }
-        public int? CustomerId { get; set; }
+        public int CustomerId { get; set; }
         public bool OrderPlaced { get; set; }
 
         public virtual Customer Customer { get; set; }

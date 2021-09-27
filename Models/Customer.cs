@@ -17,10 +17,6 @@ namespace Models
         {
             this.Name = Name;
         }
-        public Customer(int Id) : this()
-        {
-            this.Id = Id;
-        }
 
         public override string ToString()
         {
