@@ -43,9 +43,11 @@ namespace UI
                         string name = Console.ReadLine();
                         Customer c = new Customer(name);
                         _bl.AddCustomer(c);
+                        CurrentCustomer = _bl.CheckCustomerExists(name);
 
                         //Set static CurrentCustomer to the customer that just logged in.
-                        CurrentCustomer = c;
+                        Order o = new Order(CurrentCustomer.Id);
+                        CurrentOrder = _bl.CreateOrder(o);
 
                         Console.WriteLine();
                         Console.WriteLine($"Great, you are now logged in as {CurrentCustomer.ToString()}.");

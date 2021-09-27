@@ -49,8 +49,24 @@ namespace UI
         }
         private List<Brew> PlaceOrder(List<OrderItem> oiList)
         {
+            List<Brew> UpdatedBrews = new List<Brew>();
             //new strategy: run through each brew here. Update 1 brew at a time in db. ***
-            return _bl.PlaceOrder(oiList);
+            foreach(OrderItem oi in oiList)
+            {
+                //Update the BrewQuantity of each brew.
+                int currentBrewId = oi.BrewId;
+                Brew currentBrew = _bl.GetBrewById(currentBrewId);
+
+                //Update Models.Brew.BrewQuantity.
+                currentBrew.BrewQuantity -= oi.OrderQuantity;
+
+                Console.WriteLine(currentBrew.BrewQuantity);
+
+                //Send updated Brew.BrewQuantity to DL to be updated in the DB.
+                Brew UpdatedBrew = _bl.UpdateBrewQuantity(currentBrew);
+                UpdatedBrews.Add(UpdatedBrew);
+            }
+            return UpdatedBrews;
         }
         private List<OrderItem> GetOrderItems(int orderId)
         {

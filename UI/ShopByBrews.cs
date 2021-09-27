@@ -25,8 +25,13 @@ namespace UI
             Console.WriteLine("[x] Back");
 
             Console.WriteLine("Select a Brew to add to your order.");
-
-            int brewIndex = Int32.Parse(Console.ReadLine());
+            
+            string input = Console.ReadLine();
+            if(input.ToLower() == "x")
+            {
+                return;
+            }
+            int brewIndex = Int32.Parse(input);
 
             //When 20 is used as input, it throws an exception...Idk why...
             try
