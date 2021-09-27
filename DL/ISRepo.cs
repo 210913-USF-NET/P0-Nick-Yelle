@@ -10,7 +10,15 @@ namespace DL
     {
         List<Brewery> GetBreweries();
 
+        /// <summary>
+        /// Gets a list of Brews depending on what kind of input recieved.
+        /// int > List of Brews by Brewery
+        /// no input > List of all Brews in Brews DB
+        /// </summary>
+        /// <returns>List of Brews</returns>
         List<Brew> GetBrews();
+
+        List<Brew> GetBrews(int BreweryId);
 
         void AddCustomer(Customer cust);
 
@@ -24,6 +32,10 @@ namespace DL
 
         Brew GetBrewById(int brewId);
 
-        List<Brew> PlaceOrder(List<OrderItem> oiList);
+        Brew UpdateBrewQuantity(Brew brew);
+
+        Brew AddBrew(Brew brew);
+
+        Order PlaceOrder(int orderId);
     }
 }

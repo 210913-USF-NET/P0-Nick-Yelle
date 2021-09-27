@@ -4,5 +4,13 @@
         <name>DL</name>
     </assembly>
     <members>
+        <member name="M:DL.ISRepo.GetBrews">
+            <summary>
+            Gets a list of Brews depending on what kind of input recieved.
+            int > List of Brews by Brewery
+            no input > List of all Brews in Brews DB
+            </summary>
+            <returns>List of Brews</returns>
+        </member>
     </members>
 </doc>

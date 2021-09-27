@@ -28,6 +28,13 @@ namespace Models
             this.Price = Price;
         }
 
+        public Brew(Brewery brewery, string name, int Price)
+        {
+            this.BreweryId = brewery.Id;
+            this.Name = name;
+            this.Price = Price;
+        } 
+
         //Overriding ToString method.
         public override string ToString()
         {

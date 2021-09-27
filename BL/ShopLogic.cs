@@ -28,6 +28,11 @@ namespace BL
             return _repo.GetBrews();
         }
 
+        public List<Brew> GetBrews(int BreweryId)
+        {
+            return _repo.GetBrews(BreweryId);
+        }
+
         public void AddCustomer(Customer cust)
         {
             _repo.AddCustomer(cust);
@@ -58,9 +63,19 @@ namespace BL
             return _repo.GetBrewById(Id);
         }
 
-        public List<Brew> PlaceOrder(List<OrderItem> oiList)
+        public Brew UpdateBrewQuantity(Brew brew)
         {
-            return _repo.PlaceOrder(oiList);
+            return _repo.UpdateBrewQuantity(brew);
+        }
+
+        public Brew AddBrew(Brew brew)
+        {
+            return _repo.AddBrew(brew);
+        }
+
+        public Order PlaceOrder(int orderId)
+        {
+            return _repo.PlaceOrder(orderId);
         }
     }
 }

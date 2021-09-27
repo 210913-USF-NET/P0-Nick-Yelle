@@ -27,7 +27,51 @@ namespace UI
             Console.WriteLine("Which Brewery would you like to Shop?");
             Console.WriteLine("[x] Back");
 
-            string breweryIndex = Console.ReadLine();
+            int breweryId = Int32.Parse(Console.ReadLine());
+            Console.WriteLine();
+            List<Brew> BreweryBrews = GetBrews(breweryId);
+
+            Console.WriteLine("Select a Brew to add to your order.");
+            
+            string input = Console.ReadLine();
+            if(input.ToLower() == "x")
+            {
+                return;
+            }
+            int brewIndex = Int32.Parse(input);
+
+            //When 20 is used as input, it throws an exception...Idk why...
+            try
+            {
+            Brew chosenBrew = BreweryBrews[brewIndex];
+
+            Console.WriteLine();
+            Console.WriteLine($"You have chosen {chosenBrew.Name}");
+            Console.WriteLine();
+            Console.WriteLine("How many would you like?");
+            int chosenQuantity = Int32.Parse(Console.ReadLine());
+
+            _bl.AddBrewToOrder(Login.CurrentOrder, chosenBrew, chosenQuantity);
+            }
+            catch (System.ArgumentOutOfRangeException){}
+        }
+
+        List<Brew> GetBrews(int BreweryId)
+        {
+            List<Brew> allBrews = _bl.GetBrews(BreweryId);
+
+            if(allBrews.Count == 0)
+            {
+                Console.WriteLine("Currently No Brews Here.");
+            }
+            else
+            {
+                for(int i = 0; i < allBrews.Count; i++)
+                {
+                    Console.WriteLine($"[{i}] {allBrews[i].ToString()}");
+                }
+            }
+            return allBrews;
         }
         private List<Brewery> GetBreweries()
         {
@@ -40,7 +84,7 @@ namespace UI
             {
                 for(int i = 0; i < allBreweries.Count; i++)
                 {
-                    Console.WriteLine($"[{i + 1}] {allBreweries[i].ToString()}");
+                    Console.WriteLine($"[{allBreweries[i].Id}] {allBreweries[i].ToString()}");
                 }
             }
             return allBreweries;

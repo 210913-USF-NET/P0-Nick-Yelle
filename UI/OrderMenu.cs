@@ -66,6 +66,11 @@ namespace UI
                 Brew UpdatedBrew = _bl.UpdateBrewQuantity(currentBrew);
                 UpdatedBrews.Add(UpdatedBrew);
             }
+
+            //Update OrderPlaced Variable of the Order.
+            int orderId = oiList[0].OrderId;
+            _bl.PlaceOrder(orderId);
+
             return UpdatedBrews;
         }
         private List<OrderItem> GetOrderItems(int orderId)

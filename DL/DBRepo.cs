@@ -55,6 +55,19 @@ namespace DL
             ).ToList();
         }
 
+        public List<Brew> GetBrews(int BreweryId)
+        {
+            return (from b in _context.Brews
+                    where b.BreweryId == BreweryId
+                    select new Models.Brew(){
+                        Id = b.BrewId,
+                        Name = b.Name,
+                        BreweryId = b.BreweryId,
+                        Price = b.Price,
+                        BrewQuantity = b.BrewQuantity
+                    }).ToList();
+        }
+
         public void AddCustomer(Models.Customer cust)
         {   
             Entity.Customer ec = new Entity.Customer()
@@ -150,32 +163,68 @@ namespace DL
             return list[0];
         }
 
-        public List<Brew> PlaceOrder(List<OrderItem> oiList)
+        public Brew UpdateBrewQuantity(Brew brew)
         {
-            List<Brew> updatedBrewList = new List<Brew>();
-            
-            foreach(OrderItem oi in oiList)
-            {
-                //Retrieve Brew/Product.
-                List<Brew> retrievedBrew = (from b in _context.Brews
-                                where b.BrewId == oi.BrewId
-                                select new Models.Brew(){
-                                    BreweryId = b.BreweryId,
-                                    Id = b.BrewId,
-                                    Name = b.Name,
-                                    Price = b.Price,
-                                    BrewQuantity = b.BrewQuantity
-                                }).ToList();
-            
-                //Update Brew/Product inventory.
-                retrievedBrew[0].BrewQuantity -= oi.OrderQuantity;
-                //Add Brew to updatedBrewList.
-                updatedBrewList.Add(retrievedBrew[0]);
-                _context.SaveChanges();
+            Entity.Brew updatedBrew = (from b in _context.Brews
+                                        where b.BrewId == brew.Id
+                                        select b).SingleOrDefault();
 
-                _context.ChangeTracker.Clear();
-                }
-            return updatedBrewList;
+            updatedBrew.BrewQuantity = brew.BrewQuantity;
+
+            Brew newerBrew = new Models.Brew(){
+                Id = updatedBrew.BrewId,
+                Name = updatedBrew.Name,
+                BreweryId = updatedBrew.BreweryId,
+                Price = updatedBrew.Price,
+                BrewQuantity = updatedBrew.BrewQuantity
+            };
+
+            _context.SaveChanges();
+
+            _context.ChangeTracker.Clear();
+
+            return newerBrew;
+        }
+
+        public Brew AddBrew(Brew brew)
+        {
+            Entity.Brew b = new Entity.Brew()
+            {
+                BreweryId = brew.BreweryId,
+                Name = brew.Name,
+                BrewQuantity = brew.BrewQuantity,
+                Price = brew.Price
+
+            };
+
+            b = _context.Add(b).Entity;
+
+            _context.SaveChanges();
+
+            _context.ChangeTracker.Clear();
+
+            return brew;
+        }
+
+        public Order PlaceOrder(int orderId)
+        {
+            Entity.Order eo = (from o in _context.Orders 
+                                where o.OrderId == orderId
+                                select o).SingleOrDefault();
+
+            eo.OrderPlaced = true;
+
+            Order returnedOrder = new Models.Order(){
+                OrderId = eo.OrderId,
+                CustomerId = eo.CustomerId,
+                OrderPlaced = eo.OrderPlaced
+            };
+
+            _context.SaveChanges();
+
+            _context.ChangeTracker.Clear();
+
+            return returnedOrder;
         }
     }
 }

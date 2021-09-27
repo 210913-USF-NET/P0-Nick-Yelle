@@ -19,8 +19,6 @@ namespace UI
         {
             bool exit = false;
 
-            Console.WriteLine();
-            Console.WriteLine(":::: All Brews ::::");
             List<Brew> brewList = GetBrews();
             Console.WriteLine("[x] Back");
 
@@ -48,12 +46,14 @@ namespace UI
             }
             catch (System.ArgumentOutOfRangeException){}
         }
-        private OrderItem AddBrewToOrder(Order order, Brew brew, int quantity)
+        public OrderItem AddBrewToOrder(Order order, Brew brew, int quantity)
         {
             return _bl.AddBrewToOrder(order, brew, quantity);
         }
         private List<Brew> GetBrews()
         {
+            Console.WriteLine();
+            Console.WriteLine(":::: All Brews ::::");
             List<Brew> allBrews = _bl.GetBrews();
             if(allBrews.Count == 0)
             {

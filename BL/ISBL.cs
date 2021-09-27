@@ -16,6 +16,8 @@ namespace BL
 
         List<Brew> GetBrews();
 
+        List<Brew> GetBrews(int BreweryId);
+
         void AddCustomer(Customer cust);
 
         Customer CheckCustomerExists(string name);
@@ -28,6 +30,11 @@ namespace BL
 
         Brew GetBrewById(int brewId);
 
-        List<Brew> PlaceOrder(List<OrderItem> oiList);
+        Brew UpdateBrewQuantity(Brew brew);
+
+        Brew AddBrew(Brew brew);
+
+        Order PlaceOrder(int orderId);
+
     }
 }
