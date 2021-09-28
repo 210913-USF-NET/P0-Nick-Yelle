@@ -33,9 +33,9 @@ namespace BL
             return _repo.GetBrews(BreweryId);
         }
 
-        public void AddCustomer(Customer cust)
+        public Customer AddCustomer(Customer cust)
         {
-            _repo.AddCustomer(cust);
+            return _repo.AddCustomer(cust);
         }
 
         public Customer CheckCustomerExists(string name)
@@ -76,6 +76,16 @@ namespace BL
         public Order PlaceOrder(int orderId)
         {
             return _repo.PlaceOrder(orderId);
+        }
+
+        public List<Customer> GetCustomers()
+        {
+            return _repo.GetCustomers();
+        }
+
+        public List<Order> GetOrders(Customer cust)
+        {
+            return _repo.GetOrders(cust);
         }
     }
 }

@@ -17,7 +17,6 @@ namespace UI
         }
         public void Start()
         {
-            bool exit = false;
 
             List<Brew> brewList = GetBrews();
             Console.WriteLine("[x] Back");

@@ -16,6 +16,7 @@ namespace UI
         }
         public void Start()
         {
+            int total = 0;
             Console.WriteLine();
             Console.WriteLine("---Current Order---");
             int orderId = Login.CurrentOrder.OrderId;
@@ -30,9 +31,11 @@ namespace UI
             {
                 foreach(OrderItem oi in orderItems)
                 {
-                    Console.WriteLine($"{oi.OrderQuantity} {GetBrewById(oi.BrewId)}");
+                    Console.WriteLine($"{oi.OrderQuantity} {GetBrewById(oi.BrewId)} - ${oi.OrderQuantity*GetBrewById(oi.BrewId).Price}");
+                    total += oi.OrderQuantity*_bl.GetBrewById(oi.BrewId).Price;
                 }
                 Console.WriteLine();
+                Console.WriteLine($"TOTAL : ${total}");
                 Console.WriteLine("[$] To Place Current Order");
                 Console.WriteLine("[x] Exit Order Menu");
             }
@@ -60,7 +63,7 @@ namespace UI
                 //Update Models.Brew.BrewQuantity.
                 currentBrew.BrewQuantity -= oi.OrderQuantity;
 
-                Console.WriteLine(currentBrew.BrewQuantity);
+                Console.WriteLine($"{currentBrew.BrewQuantity} {currentBrew.Name} left.");
 
                 //Send updated Brew.BrewQuantity to DL to be updated in the DB.
                 Brew UpdatedBrew = _bl.UpdateBrewQuantity(currentBrew);
@@ -70,6 +73,12 @@ namespace UI
             //Update OrderPlaced Variable of the Order.
             int orderId = oiList[0].OrderId;
             _bl.PlaceOrder(orderId);
+
+            //Clear Current Order and Create new one. 
+            Order nextOrder = new Order(){
+                CustomerId = Login.CurrentCustomer.Id
+            };
+            Login.CurrentOrder = _bl.CreateOrder(nextOrder);
 
             return UpdatedBrews;
         }

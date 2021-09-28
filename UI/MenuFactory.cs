@@ -37,6 +37,8 @@ namespace UI
                     return new OrderMenu(new ShopLogic(new DBRepo(context)));
                 case "man brew menu":
                     return new ManBrewMenu(new ShopLogic(new DBRepo(context)));
+                case "order history":
+                    return new OrderHistory(new ShopLogic(new DBRepo(context)));
                 default:
                     Console.WriteLine("Menu Factory Unrecognized command");
                     return null;

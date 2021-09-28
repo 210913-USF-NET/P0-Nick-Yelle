@@ -68,7 +68,7 @@ namespace DL
                     }).ToList();
         }
 
-        public void AddCustomer(Models.Customer cust)
+        public Customer AddCustomer(Models.Customer cust)
         {   
             Entity.Customer ec = new Entity.Customer()
             {
@@ -80,6 +80,11 @@ namespace DL
             _context.SaveChanges();
 
             _context.ChangeTracker.Clear();
+
+            return new Models.Customer(){
+                Name = ec.Name,
+                Id = ec.CustomerId
+            };
         }
 
         public Customer CheckCustomerExists(string name)
@@ -225,6 +230,28 @@ namespace DL
             _context.ChangeTracker.Clear();
 
             return returnedOrder;
+        }
+
+        public List<Customer> GetCustomers()
+        {
+            return _context.Customers.Select(
+                Customer => new Models.Customer() {
+                    Id = Customer.CustomerId,
+                    Name = Customer.Name
+                }
+            ).ToList();
+        }
+
+        public List<Order> GetOrders(Customer c)
+        {
+            return (from o in _context.Orders
+                    where o.CustomerId == c.Id && 
+                    o.OrderPlaced == true
+                    select new Models.Order(){
+                        OrderId = o.OrderId,
+                        CustomerId = o.CustomerId,
+                        OrderPlaced = o.OrderPlaced
+                    }).ToList();
         }
     }
 }

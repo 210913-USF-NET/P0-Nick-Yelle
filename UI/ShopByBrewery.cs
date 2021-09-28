@@ -17,7 +17,6 @@ namespace UI
         }
         public void Start()
         {
-            bool exit = false;
 
             Console.WriteLine();
             GetBreweries();
@@ -27,9 +26,17 @@ namespace UI
             Console.WriteLine("Which Brewery would you like to Shop?");
             Console.WriteLine("[x] Back");
 
-            int breweryId = Int32.Parse(Console.ReadLine());
+            string chosenBrewery = Console.ReadLine();
+
+            if(chosenBrewery.ToLower() == "x")
+            {
+                return;
+            }
+
+            int breweryId = Int32.Parse(chosenBrewery);
             Console.WriteLine();
             List<Brew> BreweryBrews = GetBrews(breweryId);
+            Console.WriteLine("[x] Back");
 
             Console.WriteLine("Select a Brew to add to your order.");
             
@@ -68,7 +75,7 @@ namespace UI
             {
                 for(int i = 0; i < allBrews.Count; i++)
                 {
-                    Console.WriteLine($"[{i}] {allBrews[i].ToString()}");
+                    Console.WriteLine($"[{i}] {allBrews[i].ToDescription()}");
                 }
             }
             return allBrews;

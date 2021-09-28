@@ -57,14 +57,23 @@ namespace UI
             List<Brew> brews = _bl.GetBrews();
             for(int i = 0; i < brews.Count; i++)
             {
-                Console.WriteLine($"[{i}] {brews[i].ToString()}");
+                Console.WriteLine($"[{i}] {brews[i].ToDescription()}");
             }
             int chosenIndex = Int32.Parse(Console.ReadLine());
             Brew brewToChange = brews[chosenIndex];
 
+            Input: 
             //Add/Subtract from chosen brew.
-            Console.WriteLine("How much would you like to add/subtract?");
-            brewToChange.BrewQuantity += Int32.Parse(Console.ReadLine());
+            Console.WriteLine($"How many {brewToChange.Name} would you like to add/subtract?");
+            try
+            {
+                brewToChange.BrewQuantity += Int32.Parse(Console.ReadLine());
+            }
+            catch (System.FormatException)
+            {
+                Console.WriteLine("Please input a number");
+                goto Input;
+            }
 
             //Send to change to DL.
             Brew changedBrew = _bl.UpdateBrewQuantity(brewToChange);
@@ -89,6 +98,8 @@ namespace UI
 
         public void ListBrews()
         {
+            Console.WriteLine();
+            Console.WriteLine(":::All Brews:::");
             List<Brew> allBrews = _bl.GetBrews();
             if(allBrews.Count == 0)
             {

@@ -37,18 +37,7 @@ namespace UI
                 switch(Console.ReadLine().ToUpper())
                 {
                     case "0":
-                    
-                        //Collect name and add to Customers DB.
-                        Console.WriteLine("Welcome! What is your Name?");
-                        string name = Console.ReadLine();
-                        Customer c = new Customer(name);
-                        _bl.AddCustomer(c);
-                        CurrentCustomer = _bl.CheckCustomerExists(name);
-
-                        //Set static CurrentCustomer to the customer that just logged in.
-                        Order o = new Order(CurrentCustomer.Id);
-                        CurrentOrder = _bl.CreateOrder(o);
-
+                        CreateNewCustomer();
                         Console.WriteLine();
                         Console.WriteLine($"Great, you are now logged in as {CurrentCustomer.ToString()}.");
                         Console.WriteLine("Happy Brew Finding!");
@@ -66,7 +55,7 @@ namespace UI
                             CurrentOrder = new Order(CurrentCustomer.Id);
                             CurrentOrder = _bl.CreateOrder(CurrentOrder);
                         } 
-                        catch (NullReferenceException e)
+                        catch (NullReferenceException)
                         {
                             Console.WriteLine($"A {n} has never been here...but...");
                             goto case "0";
@@ -97,9 +86,43 @@ namespace UI
             } 
         }
 
-        // private void AddCustomer(Customer cust)
-        // {
-        //     _bl.AddCustomer(cust);
-        // }
+        private Customer CreateNewCustomer()
+        {
+            bool tryAgain = false;
+            Start:
+            //Collect name.
+            if(tryAgain) 
+            {
+                Console.WriteLine("What else do you go by?");
+            }
+            else 
+            {
+                Console.WriteLine("Welcome! What is your Name?");
+            }
+            
+            string name = Console.ReadLine();
+            //Check if name already exists in DB.
+            if (_bl.CheckCustomerExists(name) == null)
+            {
+                Console.WriteLine();
+                Customer c = new Customer(name);
+                CurrentCustomer = _bl.AddCustomer(c);
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("Sorry a customer with that name already exists.");
+                Console.WriteLine($"There's only room for one {name} in these parts.");
+                Console.WriteLine();
+                goto Start;
+            }
+
+            //Set static CurrentCustomer to the customer that just logged in.
+            Order o = new Order(CurrentCustomer.Id);
+            CurrentOrder = _bl.CreateOrder(o);
+
+            return CurrentCustomer;
+        }
     }
 }

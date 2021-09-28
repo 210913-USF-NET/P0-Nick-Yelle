@@ -18,7 +18,6 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <DocumentationFile>../DOC/$(AssemblyName)-doc.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

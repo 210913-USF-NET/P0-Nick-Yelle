@@ -20,11 +20,11 @@ namespace Tests
             Assert.Equal(testName, test.Name);
         }
 
-        [Theory]
-        public void BrewShouldNotSetInvalidData(string input)
-        {
-            //Arrange.
+        // [Theory]
+        // public void BrewShouldNotSetInvalidData(string input)
+        // {
+        //     //Arrange.
 
-        }
+        // }
     }
 }
