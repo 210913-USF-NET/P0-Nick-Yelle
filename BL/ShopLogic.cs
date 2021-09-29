@@ -87,5 +87,15 @@ namespace BL
         {
             return _repo.GetOrders(cust);
         }
+
+        public Brewery AddBrewery(Brewery b)
+        {
+            return _repo.AddBrewery(b);
+        }
+
+        public Brewery GetBreweryById(int id)
+        {
+            return _repo.GetBreweryById(id);
+        }
     }
 }

@@ -24,7 +24,6 @@ namespace Tests
         // public void BrewShouldNotSetInvalidData(string input)
         // {
         //     //Arrange.
-
         // }
     }
 }

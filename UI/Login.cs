@@ -38,7 +38,6 @@ namespace UI
                 {
                     case "0":
                         CreateNewCustomer();
-                        Console.WriteLine();
                         Console.WriteLine($"Great, you are now logged in as {CurrentCustomer.ToString()}.");
                         Console.WriteLine("Happy Brew Finding!");
                         MenuFactory.GetMenu("shop menu").Start();
@@ -99,7 +98,7 @@ namespace UI
             {
                 Console.WriteLine("Welcome! What is your Name?");
             }
-            
+
             string name = Console.ReadLine();
             //Check if name already exists in DB.
             if (_bl.CheckCustomerExists(name) == null)

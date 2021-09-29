@@ -16,6 +16,8 @@ namespace DL
         /// no input > List of all Brews in Brews DB
         /// </summary>
         /// <returns>List of Brews</returns>
+        
+        Brewery GetBreweryById(int id);
         List<Brew> GetBrews();
 
         List<Brew> GetBrews(int BreweryId);
@@ -41,5 +43,7 @@ namespace DL
         List<Customer> GetCustomers();
 
         List<Order> GetOrders(Customer c);
+
+        Brewery AddBrewery(Brewery b);
     }
 }

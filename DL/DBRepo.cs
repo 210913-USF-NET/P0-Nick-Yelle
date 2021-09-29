@@ -49,6 +49,7 @@ namespace DL
                 Brew => new Models.Brew() {
                     Id = Brew.BrewId,
                     Name = Brew.Name,
+                    BreweryId = Brew.BreweryId,
                     Price = Brew.Price,
                     BrewQuantity = Brew.BrewQuantity
                 }
@@ -252,6 +253,39 @@ namespace DL
                         CustomerId = o.CustomerId,
                         OrderPlaced = o.OrderPlaced
                     }).ToList();
+        }
+
+        public Brewery AddBrewery(Brewery brewery)
+        {
+            Entity.Brewery b = new Entity.Brewery()
+            {
+                Name = brewery.Name,
+                City = brewery.City,
+                State = brewery.State
+            };
+
+            b = _context.Add(b).Entity;
+
+            _context.SaveChanges();
+
+            _context.ChangeTracker.Clear();
+
+            return brewery;
+        }
+
+        public Brewery GetBreweryById(int id)
+        {
+            List<Brewery> list = (from b in _context.Breweries 
+                    where b.BreweryId == id
+                    select new Models.Brewery(){
+                        Name = b.Name,
+                        Id = b.BreweryId,
+                        City = b.City,
+                        State = b.State
+                    }).ToList();
+
+            //Returning first item in list because I know the query will return exactly 1 Brewery.
+            return list[0];
         }
     }
 }

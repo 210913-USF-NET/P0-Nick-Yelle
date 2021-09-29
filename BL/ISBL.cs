@@ -10,8 +10,9 @@ namespace BL
     /// Interface designed to interact with customers
     /// </summary>
     public interface ISBL
-    {
-        ///Gets all breweries listed in database "Breweries".
+    {   
+        Brewery GetBreweryById(int id);
+        Brewery AddBrewery(Brewery b);
         List<Brewery> GetBreweries();
 
         List<Brew> GetBrews();

@@ -15,8 +15,9 @@ namespace Models
         {
             this.Name = Name;
         }
-        public Brewery(string City, string State) : this()
+        public Brewery(string Name, string City, string State)
         {
+            this.Name = Name;
             this.City = City;
             this.State = State;
         }

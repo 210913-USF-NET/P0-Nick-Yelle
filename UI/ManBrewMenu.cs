@@ -20,22 +20,32 @@ namespace UI
             {
                 Console.WriteLine();
                 Console.WriteLine("What would you like to do?");
-                Console.WriteLine("[1] See all Brews");
-                Console.WriteLine("[2] Create New Brew");
-                Console.WriteLine("[3] Add Inventory to Existing Brew");
+                Console.WriteLine("[1] See all Breweries");
+                Console.WriteLine("[2] Create New Brewery");
+                Console.WriteLine("[3] See all Brews");
+                Console.WriteLine("[4] Create New Brew");
+                Console.WriteLine("[5] Add Inventory");
                 Console.WriteLine("[x] Back to Manager Menu");
 
                 switch(Console.ReadLine())
                 {
                     case "1":
-                        ListBrews();
+                        ListAllBreweries();
                         break;
 
                     case "2":
-                        CreateBrew();
+                        CreateBrewery();
                         break;
 
                     case "3":
+                        ListBrews();
+                        break;
+
+                    case "4":
+                        CreateBrew();
+                        break;
+
+                    case "5":
                         ChangeInventory();
                         break;
 
@@ -49,6 +59,36 @@ namespace UI
                         break;
                 }
             } while (!exit);
+        }
+
+        private void CreateBrewery()
+        {
+            //Get Name, City, State.
+            Console.WriteLine();
+            Console.WriteLine("Brewery Name:");
+            string name = Console.ReadLine();
+            Console.WriteLine("Brewery Location:");
+            Console.WriteLine("City");
+            string city = Console.ReadLine();
+            Console.WriteLine("State");
+            string state = Console.ReadLine();
+            
+
+            //Create Brewery.
+            Brewery newBrewery = new Brewery(name, city, state);
+            Console.WriteLine($"You created {name}, in {city}, {state}");
+            _bl.AddBrewery(newBrewery);
+        }
+
+        private void ListAllBreweries()
+        {
+            List<Brewery> breweries = _bl.GetBreweries();
+            Console.WriteLine();
+            Console.WriteLine(":::: All Breweries ::::");
+            for(int i = 0; i < breweries.Count; i++)
+            {
+                Console.WriteLine($"--{breweries[i].ToString()}--");
+            }
         }
         public Brew ChangeInventory()
         {
@@ -109,7 +149,7 @@ namespace UI
             {
                 foreach(Brew brew in allBrews)
                 {
-                    Console.WriteLine(brew.ToDescription());
+                    Console.WriteLine($"{brew.ToDescription()} -- {_bl.GetBreweryById(brew.BreweryId)}");
                 }
             }
         }
@@ -129,21 +169,5 @@ namespace UI
             return allBreweries[chosenBreweryIndex];
             
         }
-
-        // private void CreateBrewery()
-        // {
-        //     Console.WriteLine("Creating new Brewery.");
-        //     Console.WriteLine("Brewery Name:");
-        //     string name = Console.ReadLine();
-        //     Console.WriteLine("--Brewery Location--");
-        //     Console.WriteLine("State");
-        //     string state = Console.ReadLine();
-        //     Console.WriteLine("City");
-        //     string city = Console.ReadLine();
-
-        //     Brewery newBrewery = new Brewery(name);
-        //     Console.WriteLine($"You created {name}, in {city}, {state}");
-        //     _bl.AddBrew(newBrew);
-        // }
     }
 }

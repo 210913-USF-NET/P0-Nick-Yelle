@@ -13,9 +13,8 @@ namespace UI
             {
                 Console.WriteLine();
                 Console.WriteLine("What would you like to manage?");
-                Console.WriteLine("[1] Manage Brews");
-                Console.WriteLine("[2] Manage Breweries");
-                Console.WriteLine("[3] View Order History");
+                Console.WriteLine("[1] Manage Breweries");
+                Console.WriteLine("[2] View Order History");
                 Console.WriteLine("[x] Back to Start Menu");
 
                 switch(Console.ReadLine().ToLower())
@@ -24,9 +23,6 @@ namespace UI
                         MenuFactory.GetMenu("Man Brew Menu").Start();
                         break;
                     case "2":
-                        Console.WriteLine("Unimplemented.");
-                        break;
-                    case "3":
                         MenuFactory.GetMenu("Order History").Start();
                         break;
                     case "x":

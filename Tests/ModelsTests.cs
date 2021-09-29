@@ -10,20 +10,51 @@ namespace Tests
     public class ModelsTests
     {
         [Fact]
-        public void AllModelsShouldCreate()
+        public void BrewShouldCreate()
         {
             //Arrange and Act.
             Brew brew = new Brew();
-            Brewery brewery = new Brewery();
-            Customer customer = new Customer();
-            Order order = new Order();
-            OrderItem oi = new OrderItem();
             
             //Assert.
             Assert.NotNull(brew);
+        }
+
+        [Fact]
+        public void BreweryShouldCreate()
+        {
+            //Arrange and Act.
+            Brewery brewery = new Brewery();
+
+            //Assert.
             Assert.NotNull(brewery);
+        }
+        [Fact]
+        public void CustomerShouldCreate()
+        {
+            //Arrange and Act.
+            Customer customer = new Customer();
+        
+            //Assert.
             Assert.NotNull(customer);
+        }
+
+        [Fact]
+        public void OrderShouldCreate()
+        {
+            //Arrange and Act.
+            Order order = new Order();
+
+            //Assert.
             Assert.NotNull(order);
+        }
+
+        [Fact]
+        public void OrderItemShouldCreate()
+        {
+            //Arrange and Act.
+            OrderItem oi = new OrderItem();
+
+            //Assert.
             Assert.NotNull(oi);
         }
     }
