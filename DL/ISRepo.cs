@@ -8,18 +8,29 @@ namespace DL
 {
     public interface ISRepo
     {
-        List<Brewery> GetBreweries();
-
         /// <summary>
-        /// Gets a list of Brews depending on what kind of input recieved.
-        /// int > List of Brews by Brewery
-        /// no input > List of all Brews in Brews DB
+        /// Selects all Brewery Objects from Breweries DB, 
+        /// converts retrieved objects to List.
         /// </summary>
-        /// <returns>List of Brews</returns>
-        
+        /// <returns>List of Brewery Objects</returns>
+        List<Brewery> GetBreweries();
+        /// <summary>
+        /// Searches Breweries DB, Selects Brewery Brewery that matches the id passed in.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Selected Brewery Object</returns>
         Brewery GetBreweryById(int id);
+        /// <summary>
+        /// Selects all Brew Objects in Brews DB,
+        /// converts retrieved objects to List.
+        /// </summary>
+        /// <returns>List of Brew Objects</returns>
         List<Brew> GetBrews();
-
+        /// <summary>
+        /// Searches Brews DB for all Brews with matching Brewery Id.
+        /// </summary>
+        /// <param name="BreweryId"></param>
+        /// <returns>List of Brews</returns>
         List<Brew> GetBrews(int BreweryId);
 
         Customer AddCustomer(Customer cust);
